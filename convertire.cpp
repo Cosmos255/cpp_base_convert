@@ -1,4 +1,4 @@
-
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -47,20 +47,14 @@ int main() {
         continue;
     }
 
-    
     return 0;
 }
-
 
 int verificare(string &og, int b){
     if (og.empty()){
         cout<<"Introdu un numar valid\n";
         return 0;
     }
-    for (int i = 0; i < og.length(); i++) { //FAce ca toate literele sa fie uppercase
-        og[i] = std::toupper(og[i]);
-    }
-    
     
     if(b<2 || b>16){
         cout<<"Baza incorecta\n";
@@ -69,7 +63,8 @@ int verificare(string &og, int b){
 
     if(b>10){
         for (int i = 0; i < og.length(); i++) //Verifica hexadecimalele
-        {
+        {   
+            og[i] = std::toupper(og[i]);
             if(switch_underworld(og.at(i)) < 0 && og.at(i)!='.'){
                 cout<<"Date incompatibile";
                 return 0;
@@ -77,6 +72,7 @@ int verificare(string &og, int b){
         }
     }else{
         for(int e=0; e < og.length(); e++){   //Verifica daca cifrele coincid cu bazele
+            og[e] = std::toupper(og[e]);
             if((og.at(e)-'0') >= b && og.at(e)!='.' ){
                 cout<<"Date incompatibile";
             return 0;
@@ -122,11 +118,6 @@ void htoz(string &og, int *pw, int baza){
         int d =switch_underworld(og.at(i));
         result+=d * pow(baza, pw[i]);
 
-        cout<<"D "<<d<<"\n";
-
-        cout<<"I "<<pw[i]<<"\n";
-        cout<<"restul"<<result<<"\n";
-
     }
     cout<<"Dupa transformare rezultatul e "<<result<<" in baza 10\n";
 }
@@ -161,5 +152,4 @@ int switch_underworld(char c){
     case 'F': return 15; break;
     default: return -1;
     }
-
 }
